@@ -5,7 +5,11 @@
     border-radius: 5px;
     padding: 1rem;
 }
-
+.display-1{
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #000000;
+}
 textarea {
     border: 1px rgb(221, 221, 221) solid;
     padding: 1rem;

@@ -1,70 +1,80 @@
 <div class="container">
-    <div class="row">
-        <div class="row mb-1">
-            <div class="col-lg-10 mb-1">
-                <input type="text" placeholder="Filtre Par Nom" [(ngModel)]="filter" #filterValue class="form-control w-50">
-            </div>
-            <div class="col-lg-1 pr-0">
-                <button class="btn btn-primary text-capitalize" [routerLink]="['add']">  <span class="mr-1"><i class="fa fa-plus-circle"></i></span>fournisseur</button>
+    <!-- <div *ngIf="isSbmitted" class="alert" [ngClass]="{' alert-success':isTrue,' alert-danger':!isTrue}" role="alert ">
+        {{ErrorMessage}}
+    </div> -->
+    <div class="row ">
+        <div class="col-lg-12 ">
+            <div class="main-box clearfix">
+                <div class="table-responsive">
+                    <div class="row py-3 my-2">
+                        <div class="input-group no-border col-md-5">
+                            <input type="text" placeholder="Filtre Par Nom" [(ngModel)]="filter" #filterValue
+                            class="form-control w-50">                        </div>
+                        <div class="col-md-3 mx-5"></div>
+                        <div class="pull-right col-md-2 ">
+                            <a routerLink="add" class=" btn btn-primary ">Nouveau client</a>
+
+                        </div>
+
+                    </div>
+
+                    <table class="table user-list ">
+                        <thead>
+                            <tr>
+                                <th><span>Fournisseur</span></th>
+                                <th><span>Email</span></th>
+                                <th><span>Adresse</span></th>
+                                <th><span>Téléphone</span></th>
+                                <th><span>Action</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of listSupplier | paginate: { itemsPerPage: 5, currentPage: p };">
+                                <td>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                    <span href="#" class="user-subhead font-weight-bold">{{ item.firstname }}</span><br>
+                                    <span class="user-subhead">{{ item.lastname }}</span>
+                                </td>
+
+                                <td class="text-center">
+                                    <span class="label label-default">{{ item.email }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default">{{ item.address }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default">{{ item.phone }}</span>
+                                </td>
+                                <td style="width: 20%; ">
+                                    <a [routerLink]="['edit/',item.id]" class="table-link ">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x"></i>
+                                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                    <a (click)='Delete(item.id)' class="table-link danger">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x"></i>
+                                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+
+                                    <a [routerLink]="['supplier-details',item.id]" class="table-link">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x" style="color: rgb(39, 155, 39);"></i>
+                                            <i class="fa fa-ellipsis-h fa-lg fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <pagination-controls previousLabel=" " nextLabel='' (pageChange)="p = $event"></pagination-controls>
+                </div>
+
             </div>
         </div>
-        <div>
-            <table style="background-color: #fff;" class="table table-responsive-sm">
-                <thead>
-                    <tr>
-                        <th>
-                            Nom complet
-                        </th>
-                        <th>
-                            E-Mail </th>
-                        <th>
-                            Address
-                        </th>
-                        <th>
-                            Teli
-                        </th>
-
-                        <th>
-                        </th>
-                        <th>
-                        </th>
-                        <th>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let supplier of (listSupplier | filter : 'firstname': filter) | paginate: { itemsPerPage: 8, 
-            currentPage: p,totalItems: listSupplier?.length }">
-                        <td>
-                            {{supplier.firstname | uppercase }}{{ " " + supplier.lastname }}
-                        </td>
-                        <td>
-                            {{supplier.email}}
-                        </td>
-                        <td>
-                            {{supplier.address |ellipsis:15}}
-                        </td>
-                        <td>
-                            {{supplier.phone}}
-                        </td>
-
-                        <td>
-                            <i [routerLink]="['supplier-details',supplier.id]" class="fa fa-ellipsis-h fa-lg" aria-hidden="true" style="cursor: pointer;" aria-hidden="true "></i>
-                        </td>
-                        <td>
-                            <i (click)="Delete(supplier.id)" class=" fa fa-trash fa-lg  text-danger" aria-hidden="true" style="cursor: pointer;" aria-hidden="true "></i>
-                        </td>
-                        <td>
-                            <i [routerLink]="['edit',supplier.id]" class=" fa fa-pencil fa-lg text-success " style="cursor: pointer; " aria-hidden="true "></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <pagination-controls *ngIf="filter.length===0 || listSupplier.length===0" directionLinks="true " previousLabel=" " nextLabel='' (pageChange)="pagechangeHandler($event) "></pagination-controls>
-        <p *ngIf="filter.length===0">
-            Nombre De(s) Fournisseur : {{listSupplier.length}}
-        </p>
     </div>
 </div>

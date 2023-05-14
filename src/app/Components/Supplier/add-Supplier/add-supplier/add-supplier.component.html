@@ -1,39 +1,91 @@
-<div class="add-contvainer">
-    <section class="get-in-touch">
-        <h3 class="title">Ajouter Un Fournisseur</h3>
-        <div *ngIf="isAdedd" [ngClass]="{'alert alert-success':isAdedd,'alert alert-danger':!isAdedd}" role="alert ">
-            {{ErrorMessage}}
+<div class="col-md-12">
+    <div *ngIf="isAdedd" [ngClass]="{'alert alert-success':isAdedd,'alert alert-danger':!isAdedd}" role="alert ">
+        {{ErrorMessage}}
+    </div>
+    <div *ngIf="errorMessage.length!=0" class="alert alert-danger" role="alert">
+        {{errorMessage}}
+    </div>
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Ajouter Un Fournisseur</h4>
         </div>
-        <div *ngIf="errorMessage.length!=0" class="alert alert-danger" role="alert">
-            {{errorMessage}}
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="addsupplier()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Prenom </label>
+                            <input type="text" class="form-control" placeholder="Nom" formControlName="firstname" />
+                            <span class="text-danger small mr-5" *ngIf="
+                  form.get('firstname').touched &&
+                  form.get('firstname').getError('required')
+                ">
+                                Entrer le prenom</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Prenom</label>
+                            <input type="email" class="form-control" placeholder="Prenom" formControlName="lastname" />
+                            <span class="text-danger small mr-5" *ngIf="
+                    form.get('lastname').touched &&
+                    form.get('lastname').getError('required')
+                  ">
+                                Entrer le prenom</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Adresse mail"
+                                formControlName="email" />
+                            <span class="text-danger small mr-5" *ngIf="
+                    form.get('email').touched &&
+                    form.get('email').getError('required')
+                  ">
+                                Entrer adresse mail</span>
+                            <span class="text-danger small mr-5" *ngIf="
+                    form.get('email').touched &&
+                    form.get('email').getError('email')
+                  ">
+                                Vérifier le format d'une adresse mail
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Tel</label>
+                            <input type="text" class="form-control" placeholder="telephone" formControlName="phone" />
+                            <span class="text-danger small mr-5" *ngIf="
+                    form.get('phone').touched &&
+                    form.get('phone').getError('required')
+                  ">
+                  Veuillez saisir le numéro de téléphone</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label>Adresse</label>
+                            <input type="text" class="form-control" placeholder="Adresse" formControlName="address" />
+                            <span class="text-danger small mr-5" *ngIf="
+                    form.get('address').touched &&
+                    form.get('address').getError('required')
+                  ">
+                                Entrer l'Adresse</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-primary col-md-3 " value="Valide" [disabled]="!form.valid">Valide</button>
+            <button type="reset" class="btn btn-primary col-md-3 ml-3 ">Reset</button>
+          </div>
+            </form>
         </div>
-        <form class="contact-form" [formGroup]="form" (ngSubmit)="addsupplier()">
-            <div class="row">
-                <div class="form-field col-lg-6">
-                    <input id="Prenom" class="input-text " type="text" formControlName="firstname" required>
-                    <label class="label" for="Prenom">Prenom : </label>
-                </div>
-                <div class="form-field col-lg-6">
-                    <input id="Nom" class="input-text " type="text" formControlName="lastname" required>
-                    <label class="label" for="Nom">Nom :</label>
-                </div>
-                <div class="form-field ">
-                    <input id="email" class="input-text " type="email" formControlName="email" required>
-                    <label class="label" for="email">E-mail :</label>
-                </div>
-                <div class="form-field ">
-                    <input id="phone" class="input-text " type="text" formControlName="phone" required>
-                    <label class="label" for="phone">Tel :</label>
-                </div>
-                <div class="form-field ">
-                    <input id="Address" class="input-text " type="text" formControlName="address" required>
-                    <label class="label" for="Address">Address</label>
-                </div>
-            </div>
-            <div class=" row form-field ">
-                <input class="submit-btn text-center text-capitalize col-lg-3" type="submit" value="Ajouter">
-                <input class="submit-btn text-center text-capitalize   col-lg-3" style="background-color: rgb(255, 255, 255);border:solid 1px rgb(173, 25, 173);; color: rgb(0, 0, 0);" type="reset" value="Vide">
-            </div>
-        </form>
-    </section>
+    </div>
 </div>

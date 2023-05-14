@@ -1,7 +1,7 @@
 <div class="add-container">
     <div class="container contact-form">
         <form [formGroup]="form" (ngSubmit)="addProduct()">
-            <h1 class="text-center display-1" style="margin-bottom: 2rem;">Ajouter Un Produit</h1>
+            <h5 class="text-center display-1" style="margin-bottom: 2rem;">Ajouter Un Produit</h5>
             <div *ngIf="isSbmitted" [ngClass]="{'alert alert-success':isAdedd,'alert alert-danger':!isAdedd}" role="alert ">
                 {{ErrorMessage}}
             </div>

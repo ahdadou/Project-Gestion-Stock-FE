@@ -1,40 +1,61 @@
-<div class=".add-continer">
-    <section class="get-in-touch">
-        <h3 class="title">Modifier Fournisseur </h3>
-        <div *ngIf="isAdedd" class="alert alert-success" role="alert ">
-            {{ErrorMessage}}
+<div class="col-md-12">
+    <h3 class="title">Modifier Fournisseur </h3>
+    <div *ngIf="isAdedd" class="alert alert-success" role="alert ">
+        {{ErrorMessage}}
+    </div>
+    <div *ngIf="errorMessage.length!=0" class="alert alert-danger" role="alert">
+        {{errorMessage}}
+    </div>
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Modifier Un Fournisseur</h4>
         </div>
-        <div *ngIf="errorMessage.length!=0" class="alert alert-danger" role="alert">
-            {{errorMessage}}
-        </div>
-        <form class="contact-form" [formGroup]="form" (ngSubmit)="updatesupplier()">
-            <div class="row">
-                <div class="form-field col-lg-6">
-                    <input id="Prenom" class="input-text " type="text" formControlName="firstname" required>
-                    <label class="label" for="Prenom">Prenom : </label>
-                </div>
-                <div class="form-field col-lg-6">
-                    <input id="Nom" class="input-text" type="text" formControlName="lastname" required>
-                    <label class="label" for="Nom">Nom :</label>
-                </div>
-                <div class="form-field">
-                    <input id="email" class="input-text" type="email" formControlName="email" required>
-                    <label class="label" for="email">E-mail :</label>
-                </div>
-                <div class="form-field ">
-                    <input id="phone" class="input-text" type="text" formControlName="phone" required>
-                    <label class="label" for="phone">Tel :</label>
-                </div>
-                <div class="form-field ">
-                    <input id="Address" class="input-text" type="text" formControlName="address" required>
-                    <label class="label" for="Address">Address</label>
-                </div>
-            </div>
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="updatesupplier()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Prenom </label>
+                            <input type="text" class="form-control" placeholder="Nom" formControlName="firstname" />
+                        </div>
+                    </div>
 
-            <div class="row form-field">
-                <input class="submit-btn text-center text-capitalize col-lg-3" type="submit" value="Modifier">
-                <input class="submit-btn text-center text-capitalize col-lg-3" style="background-color: aliceblue; color: rgb(172, 25, 173);" type="button" value="Annuller" (click)="cancel()">
-            </div>
-        </form>
-    </section>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Prenom</label>
+                            <input type="email" class="form-control" placeholder="Prenom" formControlName="lastname" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Adresse mail"
+                                formControlName="email" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Tel</label>
+                            <input type="text" class="form-control" placeholder="telephone" formControlName="phone" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label>Adresse</label>
+                            <input type="text" class="form-control" placeholder="Adresse" formControlName="address" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-primary col-md-3 " value="Valide" [disabled]="!form.valid">Valide</button>
+            <button type="reset" class="btn btn-primary col-md-3 ml-3 ">Reset</button>
+          </div>
+            </form>
+        </div>
+    </div>
 </div>

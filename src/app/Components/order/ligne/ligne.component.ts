@@ -45,7 +45,8 @@ export class LigneComponent implements OnInit {
     this.orderService.getByIdProduct(id).subscribe(
       (res) => {
         this.product = res;
-    console.log(this.product);
+        this.myForm.get("prixht").setValue(this.product.price);
+        console.log(this.product);
 
       },
       (err) => {
@@ -65,9 +66,13 @@ export class LigneComponent implements OnInit {
   }
 
   change(): any {
+    console.log("----- TEST -----");
     var tHt =
       this.myForm.get('quantity').value * this.myForm.get('prixht').value -
       this.myForm.get('reduction').value;
+      console.log(this.myForm.get('quantity').value);
+      console.log(this.myForm.get('prixht').value);
+    console.log(tHt);
     this.myForm.get('totalHT').setValue(tHt);
     var tttc =
       this.myForm.get('totalHT').value * (this.myForm.get('tva').value / 100) +

@@ -21,7 +21,6 @@ export class EditSupplierComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.id = + this.activeRoute.snapshot.paramMap.get("id");
-  
     this.getsupplier(this.id);
   }
   buildForm(){
@@ -55,7 +54,7 @@ export class EditSupplierComponent implements OnInit {
       return;
     }
     let  supplier;
-    supplier = {id :this.supplier.id,...this.form.value}
+    supplier = {id :this.id,...this.form.value}
     this.supplierService.updateSupplier(supplier).subscribe(data=>{
      
       this.ConfirmationMessage()

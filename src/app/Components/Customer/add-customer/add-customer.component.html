@@ -4,7 +4,7 @@
 </div>
   <div class="card">
     <div class="card-header card-header-primary">
-      <h4 class="card-title">Ajoute Client</h4>
+      <h4 class="card-title">Ajouter un client</h4>
     </div>
     <div class="card-body">
       <form [formGroup]="myForm" (ngSubmit)="submit()">
@@ -75,7 +75,7 @@
                   myForm.get('phone').touched &&
                   myForm.get('phone').getError('required')
                 ">
-                Entrer la numero de telephone</span>
+                Veuillez saisir le numéro de téléphone</span>
             </div>
           </div>
         </div>
